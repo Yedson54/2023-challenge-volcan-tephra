@@ -4,14 +4,19 @@ channels:
   - defaults
 dependencies:
   - numpy
+  - scipy
   - pandas
-  - scikit-learn
-  - seaborn
-  - geopandas
-  - owslib
-  - pandas-profiling
+  - scikit-learn>=0.22
   - missingno
+  - matplotlib
+  - seaborn
   - ipywidgets
+  - joblib
+  - lightgbm
+  - xgboost
+  - tensorflow-cpu
+  - pytorch-cpu
+  - torchvision-cpu
   
   - pip
   - pip:

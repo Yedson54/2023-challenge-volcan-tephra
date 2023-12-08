@@ -1,7 +1,7 @@
 scipy
-tensorflow
-torch  # pytorch
-keras
+tensorflow-cpu
+torch  # pytorch-cpu
+torchvision # torchvision-cpu
 lightgbm
 xgboost
 catboost
