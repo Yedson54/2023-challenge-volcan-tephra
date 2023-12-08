@@ -1,0 +1,19 @@
+name: ramp-tephra
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy
+  - pandas
+  - scikit-learn
+  - seaborn
+  - geopandas
+  - owslib
+  - pandas-profiling
+  - missingno
+  - ipywidgets
+  
+  - pip
+  - pip:
+    - ramp-workflow=0.6.0
+    - osfclient
