@@ -9,4 +9,3 @@ osfclient
 ipywidgets
 ramp-workflow==0.6.0
 imbalanced-learn
-
