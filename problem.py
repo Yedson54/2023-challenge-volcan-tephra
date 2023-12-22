@@ -152,7 +152,6 @@ def _get_data(path=".", split="train"):
     X_traces = data_df.loc[:, traces]
     X_df = pd.concat([X_majors, X_traces], axis=1)
 
-    # if split == "train":
     X_df["groups"] = SampleID.tolist()
     X = X_df
 
@@ -181,16 +180,6 @@ def get_test_data(path="."):
     return _get_data(path, "test")
 
 
-# def get_groups(path="."):
-#     data = pd.read_csv(os.path.join(path, "data", "train.csv"))
-#     data_df = data.copy()
-#     data_df["SampleID"] = data_df["SampleID"].astype("category")
-#     SampleID = np.array(data_df["SampleID"].cat.codes)
-#     groups = SampleID
-#     return groups
-
-
 def get_cv(X, y):
-    # groups = get_groups()
     cv = StratifiedGroupKFold(n_splits=2, shuffle=True, random_state=2)
     return cv.split(X, y, groups)
