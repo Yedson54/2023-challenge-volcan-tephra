@@ -9,3 +9,4 @@ osfclient
 ipywidgets
 ramp-workflow==0.6.0
 optuna
+imbalanced-learn
