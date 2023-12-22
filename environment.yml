@@ -24,3 +24,4 @@ dependencies:
   - pip:
     - ramp-workflow==0.6.0
     - osfclient
+    - optuna
