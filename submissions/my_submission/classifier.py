@@ -61,7 +61,7 @@ class Classifier(BaseEstimator):
             ("msno_col", msno_col_transformer),
             # ("imputer", SimpleImputer(strategy="mean")),
             # ("imputer", KNNImputer(weights='distance')),
-            # ("group_features", group_features_transformer),
+            ("group_features", group_features_transformer),
             # ("scaler", StandardScaler()),
             # ("None", None)
         ])
