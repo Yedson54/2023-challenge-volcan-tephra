@@ -18,8 +18,10 @@ dependencies:
   - tensorflow-cpu
   - pytorch-cpu
   - torchvision-cpu
-  
+  - imbalanced-learn
+
   - pip
   - pip:
     - ramp-workflow==0.6.0
     - osfclient
+    - optuna

@@ -17,10 +17,13 @@ class Classifier(BaseEstimator):
         self.pipe = make_pipeline(self.transformer, self.model)
 
     def fit(self, X, y):
+        X = X.drop(["groups"], axis=1)
         self.pipe.fit(X, y)
 
     def predict(self, X):
+        X = X.drop(["groups"], axis=1)
         return self.pipe.predict(X)
 
     def predict_proba(self, X):
+        X = X.drop(["groups"], axis=1)
         return self.pipe.predict_proba(X)

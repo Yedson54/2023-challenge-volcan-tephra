@@ -95,9 +95,12 @@ score_types = [
 def _get_data(path=".", split="train"):
     # Load data from csv files into pd.DataFrame
     #
-    # returns X (input) and y (output) arrays
+    # returns X_df (input) DataFrame with "groups" column (categorical)
+    #         y (output) np.array
 
-    data = pd.read_csv(os.path.join(path, "data", split + ".csv"))
+    data_df = pd.read_csv(os.path.join(path, "data", split + ".csv"))
+    data_df["SampleID"] = data_df["SampleID"].astype("category")
+    SampleID = np.array(data_df["SampleID"].cat.codes)
 
     # Retrieve the geochemical data for X.
     # FeO, Fe2O3 and FeO2O3T are dropped because FeOT
@@ -145,14 +148,15 @@ def _get_data(path=".", split="train"):
         "U",
     ]
 
-    X_majors = data.loc[:, majors]
-    X_traces = data.loc[:, traces]
+    X_majors = data_df.loc[:, majors]
+    X_traces = data_df.loc[:, traces]
     X_df = pd.concat([X_majors, X_traces], axis=1)
 
-    X = X_df.to_numpy()
+    X_df["groups"] = SampleID.tolist()
+    X = X_df
 
     # labels
-    y = np.array(data["Event"].map(cat_to_int).fillna(-1).astype("int8"))
+    y = np.array(data_df["Event"].map(cat_to_int).fillna(-1).astype("int8"))
 
     return X, y
 
@@ -176,16 +180,6 @@ def get_test_data(path="."):
     return _get_data(path, "test")
 
 
-# def get_groups(path="."):
-#     data = pd.read_csv(os.path.join(path, "data", "train.csv"))
-#     data_df = data.copy()
-#     data_df["SampleID"] = data_df["SampleID"].astype("category")
-#     SampleID = np.array(data_df["SampleID"].cat.codes)
-#     groups = SampleID
-#     return groups
-
-
 def get_cv(X, y):
-    # groups = get_groups()
     cv = StratifiedGroupKFold(n_splits=2, shuffle=True, random_state=2)
     return cv.split(X, y, groups)
